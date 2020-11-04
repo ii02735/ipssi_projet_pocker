@@ -1,3 +1,7 @@
+<!---
+    On enferme le code HTML permettant de structurer une carte dans un macro jinja
+    Cela afin de pouvoir se contenter d'un élément réutilisable rapidement
+-->
 {% macro carte(carte_name,img,selectable) %}
 {% if selectable == true %}
 <input class="checkcard" type="checkbox" id="{{ carte_name }}" name="carte[]" value="{{ carte_name }}" style="display: none;" />

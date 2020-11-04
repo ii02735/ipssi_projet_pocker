@@ -11,6 +11,10 @@
         <h5 class="title">Cliquer sur les cartes à conserver</h5>
     {% endif %}
     <article>
+        <!-- 
+            Si c'est pour le premier tirage, le formulaire demandera un autre tirage au contrôleur Flask (/video-poker/second)
+            Dans le cas contraire, si on connaît déjà le résultat, on revient à la page d'accueil pour resaisir une mise
+         -->
         <form method="{{ 'POST' if resultat is not defined else 'GET' }}" id="cardboard" action="{{ '/video-poker/second' if resultat is not defined else '/' }}">
             {% if resultat is not defined %}
                 <div style="display: inline">
@@ -22,11 +26,11 @@
                 <br/>
                 <button type="submit">Soumettre !</button>
             {% else %}
-                {% for data in cartes %}
+                {% for data in cartes %} <!-- Si le résultat est connu, on affiche les cartes de telle sorte à ce qu'elles ne soient pas sélectionnables -->
                     {{ macro.carte(data['carte'],data['img'],false) }}
                 {% endfor %}
                 <h4 id="message">{{ resultat }}</h4>
-                <button type="submit">Rejouer !</button>
+                <button type="submit" style="background-color: rgb(84, 143, 96);">Rejouer !</button>
             {% endif %}
         </form>
     </article>

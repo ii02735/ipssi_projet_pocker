@@ -9,21 +9,31 @@
     <section id="home_template">
         <article>
             <form id="start_game_form" method="POST" action="/video-poker/start">
-                {% if session['bankroll'] == 0 or 'bankroll' not in session %}
+                {% if 'bankroll' not in session %}
                  <h3>Saisir la banque</h3>
                  <input min="1" type="number" name="bank">
                  <h3>Saisir la mise initiale</h3>
                  <input min="1" type="number" name="mise">
                 {% else %}
                  <h3>Votre banque actuelle : {{ session['bankroll'] }} €</h3>
-                 <h3>Saisir la mise suivante</h3>
+                 <h3>Saisir la mise</h3>
                  <input min="1" type="number" name="mise">
                 {% endif %}
                 <p id="erreur">{{ errors[0] }}</p>
                 <br/> 
-                <button type="submit">Commencer</button>         
+                <button type="submit">{{ 'Continuer' if 'bankroll' in session else 'commencer' }}</button> 
             </form>
         </article>
     </section>
+    {% if 'bankroll' in session %}
+    <section>
+        <article>
+            <form method="GET" action="/restart">
+                <h4>Abandonner et et recommencer la partie ?</h4>
+                <button type="submit" style="background-color: crimson;" onclick="confirm('Le montant de la banque sera perdu. Le confirmez-vous ?')">Recommencer</button>
+            </form>
+        </article>
+    </section>
+    {% endif %}
     {% endwith %}
 {% endblock %}
