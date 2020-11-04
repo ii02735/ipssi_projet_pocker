@@ -1,0 +1,55 @@
+<script>
+window.onload = function(){ 
+
+    function domById(id){ return document.getElementById(id) }
+    function domByName(name){ return document.getElementsByName(name) }
+
+    const templates_variables = {
+        homepage: {
+            template: domById('home_template'),
+            bank: domById('bank'),
+            mise: domById('mise'),
+            erreur: domById('erreur')
+        },
+        board: {
+            template: domById('board_template'),
+            cartes: domById('cartes'),
+            message: domById('message')
+        }
+    }
+
+    domById("start_game_form").onsubmit = function(e){
+        e.preventDefault()
+        fetch('/video-poker/start',{
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                bank: this.elements["bank"].value,
+                mise: this.elements["mise"].value
+            })
+        }).then(function(response){
+            const statusCode = response.status
+            response.json().then(function(json){
+                if(statusCode != 201)
+                    templates_variables.homepage.erreur.innerText = json.erreur
+                else
+                {
+                    for(carte of json.cartes)
+                    {
+                        var htmlCheckBox = '<input class="checkcard" type="checkbox" id="'+carte.carte+'" name="carte[]" value="'+carte.carte+'" style="display: none;" />'
+                        htmlCheckBox += '<label for="'+carte.carte+'">'
+                        htmlCheckBox += '<img width="200" height="280" src="'+carte.img+'" alt="'+carte.carte+'"/>'
+                        htmlCheckBox += '</label>'
+                        templates_variables.board.cartes.innerHTML += htmlCheckBox
+                    }
+                    templates_variables.homepage.template.style.display = "none"
+                    templates_variables.board.template.style.display = "block"
+                }
+            })
+        })
+    }
+ 
+}
+</script>

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% import "carte.macro.html" as macro %}
+{% block title %}Bienvenue au vidéo-poker !{% endblock %}
+{% block body %}
+    {% with errors = get_flashed_messages(category_filter=["error"]) %}
+    <section>
+        <h2 id="main_title" class="title">Bienvenue au vidéo-poker</h2>
+    </section>
+    <section id="home_template">
+        <article>
+            <form id="start_game_form" method="POST" action="/video-poker/start">
+                {% if session['bankroll'] == 0 or 'bankroll' not in session %}
+                 <h3>Saisir la banque</h3>
+                 <input min="1" type="number" name="bank">
+                 <h3>Saisir la mise initiale</h3>
+                 <input min="1" type="number" name="mise">
+                {% else %}
+                 <h3>Votre banque actuelle : {{ session['bankroll'] }} €</h3>
+                 <h3>Saisir la mise suivante</h3>
+                 <input min="1" type="number" name="mise">
+                {% endif %}
+                <p id="erreur">{{ errors[0] }}</p>
+                <br/> 
+                <button type="submit">Commencer</button>         
+            </form>
+        </article>
+    </section>
+    {% endwith %}
+{% endblock %}

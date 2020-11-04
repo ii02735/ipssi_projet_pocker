@@ -1,0 +1,14 @@
+{% macro carte(carte_name,img,selectable) %}
+{% if selectable == true %}
+<input class="checkcard" type="checkbox" id="{{ carte_name }}" name="carte[]" value="{{ carte_name }}" style="display: none;" />
+<label for="{{ carte_name }}" style="display: inline-block;">
+        <div class="svg" style="background-image: url({{ img }}); background-size: 200px 280px; width: 200px; height: 280px;">
+            <div class="layer">
+
+            </div>
+        </div>
+</label>
+{% else %}
+<div style="display: inline;"><img width="200" height="280" src="{{ img }}" alt="{{ carte_name }}"/></div>
+{% endif %}
+{% endmacro %}
