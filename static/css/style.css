@@ -21,6 +21,8 @@ button { border: none; color: white; background: magenta; border-radius: 5px; pa
 
 #erreur { color: crimson }
 
+.svg { cursor: pointer; }
+
 .checkcard:checked + label .svg .layer {
     background-color:rgba(218, 50, 240, 0.301);
     width: 100%;

@@ -1,8 +1,7 @@
 from flask import render_template, request, url_for, redirect, flash, session
 import random
-from script_poker import tirage
 from modules.gain import partie
-from modules.util import mapCardsToImg
+from modules.util import tirage, mapCardsToImg
 from app import app
 
 @app.route("/",methods=["GET"])
