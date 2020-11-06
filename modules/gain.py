@@ -96,7 +96,7 @@ def flush(couleurs: list):
         Paramètres
         ----------
 
-            valeurs (list) : une liste contenant la couleur de chaque carte
+            couleur (list) : une liste contenant la couleur de chaque carte
 
         Sortie
         ------
@@ -174,6 +174,7 @@ def quinte_flush_royale(valeurs: list, couleurs: list):
         ----------
 
             valeurs (list) : une liste contenant la valeur de chaque carte
+            couleurs (list) : une liste contenant la couleur de chaque carte
 
         Sortie
         ------
