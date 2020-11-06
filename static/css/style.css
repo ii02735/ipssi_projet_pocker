@@ -13,7 +13,7 @@ article {
     text-align: center;
 }
 
-button { border: none; color: white; background: magenta; border-radius: 5px; padding: 5px;}
+button { border: none; color: white; background: darkblue; border-radius: 5px; padding: 5px;}
 
 #board_template { display: none ;}
 

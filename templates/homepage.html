@@ -10,12 +10,12 @@
         <article>
             <form id="start_game_form" method="POST" action="/video-poker/start">
                 {% if 'bankroll' not in session %}
-                 <h3>Saisir la banque</h3>
+                 <h3>Saisir la cagnotte</h3>
                  <input min="1" type="number" name="bank">
-                 <h3>Saisir la mise initiale</h3>
+                 <h3>Saisir la mise</h3>
                  <input min="1" type="number" name="mise">
                 {% else %}
-                 <h3>Votre banque actuelle : {{ session['bankroll'] }} €</h3>
+                 <h3>Votre cagnotte actuelle : {{ session['bankroll'] }} €</h3>
                  <h3>Saisir la mise</h3>
                  <input min="1" type="number" name="mise">
                 {% endif %}
@@ -29,8 +29,8 @@
     <section>
         <article>
             <form method="GET" action="/restart">
-                <h4>Mettre fin à la partie ?</h4>
-                <button type="submit" style="background-color: crimson;" onclick="confirm('Le confirmez-vous ?')">Recommencer</button>
+                <h4>Retirer vos gains ?</h4>
+                <button type="submit" style="background-color: goldenrod;" onclick="confirm('Le confirmez-vous ?')">Retirer</button>
             </form>
         </article>
     </section>
